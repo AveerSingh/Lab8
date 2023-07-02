@@ -94,8 +94,7 @@ void loop()
     displayLightLevel(lightLevel);
   }
 
-  unsigned int threshold1 = 60;
-  unsigned int threshold2 = 13000;
+
 
   if (display.pressedC())
   {
@@ -104,6 +103,8 @@ void loop()
     display.clearDisplay();
     display.display();
   }
+    unsigned int threshold1 = 60;
+  unsigned int threshold2 = 13000;
 
   if (proximityValue <= threshold1)
   {

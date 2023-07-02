@@ -2,6 +2,7 @@
 #include "SparkFun_VCNL4040_Arduino_Library.h"
 #include "oled-wing-adafruit.h"
 #include "blynk.h"
+SYSTEM_THREAD(ENABLED)
 
 OledWingAdafruit display;
 VCNL4040 proximitySensor;
@@ -94,24 +95,20 @@ void loop()
     unsigned int threshold1 = 60;
   unsigned int threshold2 = 13000;
 
-  if (proximityValue <= threshold1)
-  {
-    digitalWrite(LED1, HIGH);
-    digitalWrite(LED2, LOW);
-    digitalWrite(LED3, LOW);
-  }
-  else if (proximityValue <= threshold2)
-  {
-    digitalWrite(LED1, LOW);
-    digitalWrite(LED2, HIGH);
-    digitalWrite(LED3, LOW);
-  }
-  else
-  {
-    digitalWrite(LED1, LOW);
-    digitalWrite(LED2, LOW);
-    digitalWrite(LED3, HIGH);
-  }
+if (proximityValue >= threshold2) {
+  digitalWrite(LED1, HIGH);
+  digitalWrite(LED2, LOW);
+  digitalWrite(LED3, LOW);
+} else if (proximityValue >= threshold1) {
+  digitalWrite(LED1, LOW);
+  digitalWrite(LED2, HIGH);
+  digitalWrite(LED3, LOW);
+} else {
+  digitalWrite(LED1, LOW);
+  digitalWrite(LED2, LOW);
+  digitalWrite(LED3, HIGH);
+}
+
 
   if (useBlynk)
   {
